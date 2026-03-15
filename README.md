@@ -1,4 +1,4 @@
-# FPGA DMA Controller (Verilog)
+# FPGA Based DMA Controller Using Verilog
 
 ## Overview
 This project implements a **Direct Memory Access (DMA) Controller** using **Verilog HDL**.  
@@ -110,13 +110,6 @@ This project demonstrates:
 - **FPGA memory interfacing (BRAM)**
 - Hardware synthesis and implementation using **Vivado**
 - Modular digital design practices
-
----
-
-## Author
-
-**Krithika Sri**  
-VLSI Enthusiast | RTL Design | FPGA Development
 
 ---
 
