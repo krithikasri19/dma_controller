@@ -1,0 +1,43 @@
+//dma controller top module 
+module top(
+    input clk,
+    input rst_btn,
+    input start_btn,
+    output done_led,
+    output [1:0] state_led
+);
+
+wire [7:0] src_addr;
+wire [7:0] dst_addr;
+wire [31:0] read_data;
+wire [31:0] write_data;
+wire we;
+wire done;
+wire [1:0] state;
+
+//instantiation
+dma_controller dma_inst (
+    .clk(clk),
+    .rst(rst_btn),
+    .start(start_btn),
+    .done(done),
+    .state(state),
+    .src_addr(src_addr),
+    .dst_addr(dst_addr),
+    .read_data(read_data),
+    .write_data(write_data),
+    .we(we)
+);
+
+bram_memory bram_inst (
+    .clk(clk),
+    .we(we),
+    .addr(src_addr),
+    .din(write_data),
+    .dout(read_data)
+);
+
+assign done_led = done;
+assign state_led = state;
+
+endmodule
