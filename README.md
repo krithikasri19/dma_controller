@@ -42,7 +42,7 @@ IDLE → READ → WRITE → DONE
 
 ## Architecture
 
-![DMA Architecture]("C:\Users\KRITHI\Downloads\dma_architecture.png")
+![DMA Architecture](dma_Architecture.png)
 
 ---
 
