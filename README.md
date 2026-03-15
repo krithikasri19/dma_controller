@@ -40,12 +40,6 @@ IDLE → READ → WRITE → DONE
 
 ---
 
-## Architecture
-
-![DMA Architecture](dma_Architecture.png)
-
----
-
 ## Module Description
 
 ### `dma_controller.v`
