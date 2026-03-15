@@ -40,27 +40,9 @@ IDLE → READ → WRITE → DONE
 
 ---
 
-## Project Structure
+## Architecture
 
-```
-fpga-dma-controller
-│
-├── rtl
-│   ├── dma_controller.v
-│   ├── bram_interface.v
-│   └── top.v
-│
-├── constraints
-│   └── dma_constraints.xdc
-│
-├── sim
-│   └── dma_tb.v
-│
-├── docs
-│   └── architecture_diagram.png
-│
-└── README.md
-```
+![DMA Architecture](dma_architecture.png)
 
 ---
 
