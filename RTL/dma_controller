@@ -1,0 +1,66 @@
+module dma_controller(
+    input clk,
+    input rst,
+    input start,
+
+    output reg done,
+    output reg [1:0] state,
+
+    output reg [7:0] src_addr,
+    output reg [7:0] dst_addr,
+    input  [31:0] read_data,
+    output reg [31:0] write_data,
+    output reg we
+);
+
+parameter IDLE  = 2'b00;
+parameter READ  = 2'b01;
+parameter WRITE = 2'b10;
+parameter DONE  = 2'b11;
+
+reg [7:0] counter;
+
+always @(posedge clk or posedge rst) begin
+    if(rst) begin
+        state <= IDLE;
+        src_addr <= 0;
+        dst_addr <= 8'd128;
+        counter <= 0;
+        done <= 0;
+        we <= 0;
+    end
+    else begin
+        case(state)
+
+        IDLE: begin
+            done <= 0;
+            we <= 0;
+            if(start)
+                state <= READ;
+        end
+
+        READ: begin
+            write_data <= read_data;
+            we <= 0;
+            state <= WRITE;
+        end
+
+        WRITE: begin
+            we <= 1;
+            src_addr <= src_addr + 1;
+            dst_addr <= dst_addr + 1;
+            counter <= counter + 1;
+            state <= (counter == 8'd15) ? DONE : READ;
+        end
+
+        DONE: begin
+            we <= 0;
+            done <= 1;
+            state <= IDLE;
+        end
+
+        endcase
+    end
+end
+
+endmodule
