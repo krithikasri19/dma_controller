@@ -40,6 +40,13 @@ IDLE → READ → WRITE → DONE
 
 ---
 
+## Simulation Result
+
+![DMA Waveform](docs/simulation.png)
+
+---
+
+
 ## Module Description
 
 ### `dma_controller.v`
