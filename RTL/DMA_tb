@@ -1,0 +1,46 @@
+module dma_tb;
+
+reg clk;
+reg rst;
+reg start;
+
+wire done;
+wire [1:0] state;
+wire [7:0] src_addr, dst_addr;
+wire [31:0] write_data;
+wire we;
+
+reg [31:0] read_data;
+
+// Instantiate DUT
+dma_controller dut (
+    .clk(clk),
+    .rst(rst),
+    .start(start),
+    .done(done),
+    .state(state),
+    .src_addr(src_addr),
+    .dst_addr(dst_addr),
+    .read_data(read_data),
+    .write_data(write_data),
+    .we(we)
+);
+
+// Clock generation
+always #5 clk = ~clk;
+
+// Stimulus
+initial begin
+    clk = 0;
+    rst = 1;
+    start = 0;
+    read_data = 32'hA5A5A5A5;
+
+    #10 rst = 0;
+    #10 start = 1;
+    #10 start = 0;
+
+    #500 $finish;
+end
+
+endmodule
